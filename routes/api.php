@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\GroupController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,11 @@ Route::middleware('auth:sanctum')->group(function () {
     // أعضاء المجموعة
     Route::post('/groups/{group}/members', [GroupController::class, 'addMember']);
     Route::delete('/groups/{group}/members/{user}', [GroupController::class, 'removeMember']);
+
+    // المصاريف
+    Route::get('/groups/{group}/expenses', [ExpenseController::class, 'index']);
+    Route::post('/groups/{group}/expenses', [ExpenseController::class, 'store']);
+    Route::get('/groups/{group}/expenses/{expense}', [ExpenseController::class, 'show']);
+    Route::put('/groups/{group}/expenses/{expense}', [ExpenseController::class, 'update']);
+    Route::delete('/groups/{group}/expenses/{expense}', [ExpenseController::class, 'destroy']);
 });
