@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\GroupController;
@@ -31,4 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/groups/{group}/expenses/{expense}', [ExpenseController::class, 'show']);
     Route::put('/groups/{group}/expenses/{expense}', [ExpenseController::class, 'update']);
     Route::delete('/groups/{group}/expenses/{expense}', [ExpenseController::class, 'destroy']);
+    
+    // الأرصدة
+    Route::get('/groups/{group}/balances', [BalanceController::class, 'index']);
 });
