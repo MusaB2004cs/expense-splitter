@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\GroupResource;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class GroupController extends Controller
     {
         $groups = $request->user()->groups()->with('members')->get();
 
-        return response()->json($groups);
+        return GroupResource::collection($groups);
     }
 
     public function store(Request $request)
@@ -30,7 +31,7 @@ class GroupController extends Controller
 
         $group->members()->attach($request->user()->id);
 
-        return response()->json($group->load('members'), 201);
+        return response()->json(new GroupResource($group->load('members')), 201);
     }
 
     public function show(Request $request, Group $group)
@@ -39,7 +40,7 @@ class GroupController extends Controller
             return response()->json(['message' => 'غير مصرّح لك بالوصول لهذه المجموعة.'], 403);
         }
 
-        return response()->json($group->load(['members', 'expenses']));
+        return response()->json(new GroupResource($group->load(['members', 'expenses'])));
     }
 
     public function update(Request $request, Group $group)
@@ -55,7 +56,7 @@ class GroupController extends Controller
 
         $group->update($validated);
 
-        return response()->json($group);
+        return response()->json(new GroupResource($group));
     }
 
     public function destroy(Request $request, Group $group)
@@ -89,7 +90,7 @@ class GroupController extends Controller
 
         return response()->json([
             'message' => 'تمت إضافة العضو.',
-            'group'   => $group->load('members'),
+            'group'   => new GroupResource($group->load('members')),
         ]);
     }
 
@@ -107,5 +108,4 @@ class GroupController extends Controller
 
         return response()->json(['message' => 'تمت إزالة العضو.']);
     }
-    
 }

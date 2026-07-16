@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ExpenseResource;
 use App\Models\Expense;
 use App\Models\ExpenseShare;
 use App\Models\Group;
@@ -18,7 +19,7 @@ class ExpenseController extends Controller
 
         $expenses = $group->expenses()->with(['payer', 'shares.user'])->latest()->get();
 
-        return response()->json($expenses);
+        return ExpenseResource::collection($expenses);
     }
 
     public function store(Request $request, Group $group)
@@ -46,8 +47,7 @@ class ExpenseController extends Controller
             ]);
 
             $members     = $group->members;
-            $memberCount = $members->count();
-            $shareAmount = round($validated['amount'] / $memberCount, 2);
+            $shareAmount = round($validated['amount'] / $members->count(), 2);
 
             foreach ($members as $member) {
                 ExpenseShare::create([
@@ -60,7 +60,7 @@ class ExpenseController extends Controller
             return $expense;
         });
 
-        return response()->json($expense->load(['payer', 'shares.user']), 201);
+        return response()->json(new ExpenseResource($expense->load(['payer', 'shares.user'])), 201);
     }
 
     public function show(Request $request, Group $group, Expense $expense)
@@ -69,7 +69,7 @@ class ExpenseController extends Controller
             return response()->json(['message' => 'غير مصرّح لك.'], 403);
         }
 
-        return response()->json($expense->load(['payer', 'shares.user']));
+        return response()->json(new ExpenseResource($expense->load(['payer', 'shares.user'])));
     }
 
     public function update(Request $request, Group $group, Expense $expense)
@@ -102,7 +102,7 @@ class ExpenseController extends Controller
             }
         });
 
-        return response()->json($expense->load(['payer', 'shares.user']));
+        return response()->json(new ExpenseResource($expense->load(['payer', 'shares.user'])));
     }
 
     public function destroy(Request $request, Group $group, Expense $expense)
