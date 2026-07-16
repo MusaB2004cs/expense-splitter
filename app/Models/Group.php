@@ -22,4 +22,9 @@ class Group extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function settlements()
+    {
+        return $this->hasMany(Settlement::class);
+    }
 }

@@ -37,6 +37,13 @@ class BalanceService
                 $balances[$share->user_id]['owed'] += $share->share_amount;
             }
         }
+        // ضمّ التسويات
+        $settlements = $group->settlements()->get();
+
+        foreach ($settlements as $settlement) {
+            $balances[$settlement->payer_id]['paid']     += $settlement->amount;
+            $balances[$settlement->receiver_id]['owed']  += $settlement->amount;
+        }
 
         // ٣. احسب الرصيد النهائي
         foreach ($balances as &$b) {

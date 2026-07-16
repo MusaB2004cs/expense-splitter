@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SettlementController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExpenseController;
@@ -37,4 +38,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/groups/{group}/balances', [BalanceController::class, 'index']);
 
     Route::get('/groups/{group}/simplify', [BalanceController::class, 'simplify']);
+
+    // التسويات
+    Route::get('/groups/{group}/settlements', [SettlementController::class, 'index']);
+    Route::post('/groups/{group}/settlements', [SettlementController::class, 'store']);
+    Route::delete('/groups/{group}/settlements/{settlement}', [SettlementController::class, 'destroy']);
 });
