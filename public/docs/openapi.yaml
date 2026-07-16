@@ -1,0 +1,575 @@
+openapi: 3.0.3
+info:
+  title: 'Expense Splitter API Documentation'
+  description: 'RESTful API لإدارة وتسوية المصاريف المشتركة بين المجموعات — سكن مشترك، رحلات، فرق عمل.'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+tags:
+  -
+    name: Endpoints
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'يمكنك الحصول على التوكن عبر تسجيل الدخول من نقطة النهاية <code>/api/v1/login</code>.'
+security:
+  -
+    default: []
+paths:
+  /api/v1/register:
+    post:
+      summary: ''
+      operationId: postApiV1Register
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: kunde.eloisa@example.com
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: '4[*UyPJ"}6'
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/v1/login:
+    post:
+      summary: ''
+      operationId: postApiV1Login
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: qkunze@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: consequatur
+              required:
+                - email
+                - password
+      security: []
+  /api/v1/logout:
+    post:
+      summary: ''
+      operationId: postApiV1Logout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/me:
+    get:
+      summary: ''
+      operationId: getApiV1Me
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/groups:
+    get:
+      summary: ''
+      operationId: getApiV1Groups
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1Groups
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                description:
+                  type: string
+                  description: ''
+                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                  nullable: true
+              required:
+                - name
+      security: []
+  '/api/v1/groups/{group_id}':
+    get:
+      summary: ''
+      operationId: getApiV1GroupsGroup_id
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiV1GroupsGroup_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                description:
+                  type: string
+                  description: ''
+                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                  nullable: true
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1GroupsGroup_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/members':
+    post:
+      summary: ''
+      operationId: postApiV1GroupsGroup_idMembers
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must match an existing stored value.'
+                  example: qkunze@example.com
+              required:
+                - email
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/members/{user_id}':
+    delete:
+      summary: ''
+      operationId: deleteApiV1GroupsGroup_idMembersUser_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/expenses':
+    get:
+      summary: ''
+      operationId: getApiV1GroupsGroup_idExpenses
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1GroupsGroup_idExpenses
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                amount:
+                  type: number
+                  description: 'Must be at least 0.01.'
+                  example: 12
+                paid_by:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+              required:
+                - description
+                - amount
+                - paid_by
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/expenses/{expense_id}':
+    get:
+      summary: ''
+      operationId: getApiV1GroupsGroup_idExpensesExpense_id
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiV1GroupsGroup_idExpensesExpense_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                amount:
+                  type: number
+                  description: 'Must be at least 0.01.'
+                  example: 12
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1GroupsGroup_idExpensesExpense_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: expense_id
+        description: 'The ID of the expense.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/balances':
+    get:
+      summary: ''
+      operationId: getApiV1GroupsGroup_idBalances
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/simplify':
+    get:
+      summary: ''
+      operationId: getApiV1GroupsGroup_idSimplify
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/settlements':
+    get:
+      summary: ''
+      operationId: getApiV1GroupsGroup_idSettlements
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1GroupsGroup_idSettlements
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payer_id:
+                  type: string
+                  description: 'Must match an existing stored value.'
+                  example: consequatur
+                receiver_id:
+                  type: string
+                  description: 'The value and <code>payer_id</code> must be different. Must match an existing stored value.'
+                  example: consequatur
+                amount:
+                  type: number
+                  description: 'Must be at least 0.01.'
+                  example: 45
+              required:
+                - payer_id
+                - receiver_id
+                - amount
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/settlements/{settlement_id}':
+    delete:
+      summary: ''
+      operationId: deleteApiV1GroupsGroup_idSettlementsSettlement_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: settlement_id
+        description: 'The ID of the settlement.'
+        example: 1
+        required: true
+        schema:
+          type: integer
