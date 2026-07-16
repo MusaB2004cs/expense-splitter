@@ -21,4 +21,18 @@ class BalanceController extends Controller
             'balances' => $balances,
         ]);
     }
+
+    public function simplify(Request $request, Group $group, BalanceService $balanceService)
+    {
+        if (! $group->members->contains($request->user()->id)) {
+            return response()->json(['message' => 'غير مصرّح لك.'], 403);
+        }
+
+        $transactions = $balanceService->simplifyDebts($group);
+
+        return response()->json([
+            'group'        => $group->name,
+            'transactions' => $transactions,
+        ]);
+    }
 }

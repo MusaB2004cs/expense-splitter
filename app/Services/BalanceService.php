@@ -45,4 +45,56 @@ class BalanceService
 
         return array_values($balances);
     }
+
+    /**
+     * يحوّل الأرصدة لقائمة تحويلات مبسّطة (أقل عدد تحويلات).
+     */
+    public function simplifyDebts(Group $group): array
+    {
+        $balances = $this->calculateBalances($group);
+
+        // ١. افصل المدينين عن الدائنين (تجاهل اللي رصيده صفر)
+        $debtors   = [];
+        $creditors = [];
+
+        foreach ($balances as $b) {
+            if ($b['balance'] < 0) {
+                $debtors[] = ['user_id' => $b['user_id'], 'name' => $b['name'], 'amount' => -$b['balance']];
+            } elseif ($b['balance'] > 0) {
+                $creditors[] = ['user_id' => $b['user_id'], 'name' => $b['name'], 'amount' => $b['balance']];
+            }
+        }
+
+        // ٢. رتّب تنازلياً (الأكبر أول)
+        usort($debtors, fn($a, $b) => $b['amount'] <=> $a['amount']);
+        usort($creditors, fn($a, $b) => $b['amount'] <=> $a['amount']);
+
+        // ٣. طابق أكبر مدين بأكبر دائن
+        $transactions = [];
+        $i = 0;
+        $j = 0;
+
+        while ($i < count($debtors) && $j < count($creditors)) {
+            $debtor   = &$debtors[$i];
+            $creditor = &$creditors[$j];
+
+            $amount = round(min($debtor['amount'], $creditor['amount']), 2);
+
+            $transactions[] = [
+                'from'    => $debtor['name'],
+                'from_id' => $debtor['user_id'],
+                'to'      => $creditor['name'],
+                'to_id'   => $creditor['user_id'],
+                'amount'  => $amount,
+            ];
+
+            $debtor['amount']   = round($debtor['amount'] - $amount, 2);
+            $creditor['amount'] = round($creditor['amount'] - $amount, 2);
+
+            if ($debtor['amount'] <= 0) $i++;
+            if ($creditor['amount'] <= 0) $j++;
+        }
+
+        return $transactions;
+    }
 }
