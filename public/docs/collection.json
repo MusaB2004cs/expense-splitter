@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost"
+            "value": "https:\/\/expense-splitter.freehosting.dev"
         }
     ],
     "info": {
         "name": "Expense Splitter API Documentation",
-        "_postman_id": "aa264718-91e6-4a88-87b1-5a0b33bb0ba5",
+        "_postman_id": "10a74c8f-9af3-445a-a20b-59f3b9f30206",
         "description": "RESTful API \u0644\u0625\u062f\u0627\u0631\u0629 \u0648\u062a\u0633\u0648\u064a\u0629 \u0627\u0644\u0645\u0635\u0627\u0631\u064a\u0641 \u0627\u0644\u0645\u0634\u062a\u0631\u0643\u0629 \u0628\u064a\u0646 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0627\u062a \u2014 \u0633\u0643\u0646 \u0645\u0634\u062a\u0631\u0643\u060c \u0631\u062d\u0644\u0627\u062a\u060c \u0641\u0631\u0642 \u0639\u0645\u0644.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -156,297 +156,6 @@
                             "name": ""
                         }
                     ]
-                },
-                {
-                    "name": "GET api\/v1\/groups",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/groups",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/groups"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "POST api\/v1\/groups",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/groups",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/groups"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"description\":\"Dolores dolorum amet iste laborum eius est dolor.\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "GET api\/v1\/groups\/{group_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/groups\/:group_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id",
-                            "variable": [
-                                {
-                                    "id": "group_id",
-                                    "key": "group_id",
-                                    "value": 1,
-                                    "description": "The ID of the group."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "PUT api\/v1\/groups\/{group_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/groups\/:group_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id",
-                            "variable": [
-                                {
-                                    "id": "group_id",
-                                    "key": "group_id",
-                                    "value": 1,
-                                    "description": "The ID of the group."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"description\":\"Dolores dolorum amet iste laborum eius est dolor.\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "DELETE api\/v1\/groups\/{group_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/groups\/:group_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id",
-                            "variable": [
-                                {
-                                    "id": "group_id",
-                                    "key": "group_id",
-                                    "value": 1,
-                                    "description": "The ID of the group."
-                                }
-                            ]
-                        },
-                        "method": "DELETE",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "POST api\/v1\/groups\/{group_id}\/members",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/groups\/:group_id\/members",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id\/members",
-                            "variable": [
-                                {
-                                    "id": "group_id",
-                                    "key": "group_id",
-                                    "value": 1,
-                                    "description": "The ID of the group."
-                                }
-                            ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"email\":\"qkunze@example.com\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "DELETE api\/v1\/groups\/{group_id}\/members\/{user_id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/groups\/:group_id\/members\/:user_id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id\/members\/:user_id",
-                            "variable": [
-                                {
-                                    "id": "group_id",
-                                    "key": "group_id",
-                                    "value": 1,
-                                    "description": "The ID of the group."
-                                },
-                                {
-                                    "id": "user_id",
-                                    "key": "user_id",
-                                    "value": 1,
-                                    "description": "The ID of the user."
-                                }
-                            ]
-                        },
-                        "method": "DELETE",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
                 },
                 {
                     "name": "GET api\/v1\/groups\/{group_id}\/expenses",
@@ -938,6 +647,282 @@
                         "auth": {
                             "type": "noauth"
                         }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Groups",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u0639\u0631\u0636 \u0645\u062c\u0645\u0648\u0639\u0627\u062a\u064a",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/groups",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/groups"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u062a\u0631\u062c\u0639 \u0643\u0644 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0627\u062a \u0627\u0644\u062a\u064a \u064a\u0646\u062a\u0645\u064a \u0625\u0644\u064a\u0647\u0627 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0627\u0644\u062d\u0627\u0644\u064a."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u0625\u0646\u0634\u0627\u0621 \u0645\u062c\u0645\u0648\u0639\u0629",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/groups",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/groups"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"description\":\"Dolores dolorum amet iste laborum eius est dolor.\"}"
+                        },
+                        "description": "\u064a\u0646\u0634\u0626 \u0645\u062c\u0645\u0648\u0639\u0629 \u062c\u062f\u064a\u062f\u0629 \u0648\u064a\u0636\u064a\u0641 \u0627\u0644\u0645\u064f\u0646\u0634\u0626 \u0643\u0639\u0636\u0648 \u062a\u0644\u0642\u0627\u0626\u064a\u0627\u064b."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "\u0639\u0631\u0636 \u0645\u062c\u0645\u0648\u0639\u0629",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/groups\/:group_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id",
+                            "variable": [
+                                {
+                                    "id": "group_id",
+                                    "key": "group_id",
+                                    "value": 1,
+                                    "description": "The ID of the group."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u062a\u0631\u062c\u0639 \u062a\u0641\u0627\u0635\u064a\u0644 \u0645\u062c\u0645\u0648\u0639\u0629 \u0648\u0627\u062d\u062f\u0629 \u0645\u0639 \u0623\u0639\u0636\u0627\u0626\u0647\u0627 \u0648\u0645\u0635\u0627\u0631\u064a\u0641\u0647\u0627 (\u0644\u0644\u0623\u0639\u0636\u0627\u0621 \u0641\u0642\u0637)."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u062a\u0639\u062f\u064a\u0644 \u0645\u062c\u0645\u0648\u0639\u0629",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/groups\/:group_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id",
+                            "variable": [
+                                {
+                                    "id": "group_id",
+                                    "key": "group_id",
+                                    "value": 1,
+                                    "description": "The ID of the group."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"vmqeopfuudtdsufvyvddq\",\"description\":\"Dolores dolorum amet iste laborum eius est dolor.\"}"
+                        },
+                        "description": "\u064a\u0639\u062f\u0651\u0644 \u0627\u0633\u0645 \u0623\u0648 \u0648\u0635\u0641 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 (\u0644\u0644\u0645\u064f\u0646\u0634\u0626 \u0641\u0642\u0637)."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "\u062d\u0630\u0641 \u0645\u062c\u0645\u0648\u0639\u0629",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/groups\/:group_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id",
+                            "variable": [
+                                {
+                                    "id": "group_id",
+                                    "key": "group_id",
+                                    "value": 1,
+                                    "description": "The ID of the group."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u064a\u062d\u0630\u0641 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629 \u0646\u0647\u0627\u0626\u064a\u0627\u064b (\u0644\u0644\u0645\u064f\u0646\u0634\u0626 \u0641\u0642\u0637)."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "\u0625\u0636\u0627\u0641\u0629 \u0639\u0636\u0648",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/groups\/:group_id\/members",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id\/members",
+                            "variable": [
+                                {
+                                    "id": "group_id",
+                                    "key": "group_id",
+                                    "value": 1,
+                                    "description": "The ID of the group."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"qkunze@example.com\"}"
+                        },
+                        "description": "\u064a\u0636\u064a\u0641 \u0645\u0633\u062a\u062e\u062f\u0645\u0627\u064b \u0644\u0644\u0645\u062c\u0645\u0648\u0639\u0629 \u0639\u0628\u0631 \u0628\u0631\u064a\u062f\u0647 \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a (\u0644\u0644\u0645\u064f\u0646\u0634\u0626 \u0641\u0642\u0637)."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "\u0625\u0632\u0627\u0644\u0629 \u0639\u0636\u0648",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/groups\/:group_id\/members\/:user_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/groups\/:group_id\/members\/:user_id",
+                            "variable": [
+                                {
+                                    "id": "group_id",
+                                    "key": "group_id",
+                                    "value": 1,
+                                    "description": "The ID of the group."
+                                },
+                                {
+                                    "id": "user_id",
+                                    "key": "user_id",
+                                    "value": 1,
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u064a\u0632\u064a\u0644 \u0639\u0636\u0648\u0627\u064b \u0645\u0646 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629\u060c \u0648\u0644\u0627 \u064a\u0645\u0643\u0646 \u0625\u0632\u0627\u0644\u0629 \u0627\u0644\u0645\u064f\u0646\u0634\u0626 (\u0644\u0644\u0645\u064f\u0646\u0634\u0626 \u0641\u0642\u0637)."
                     },
                     "response": []
                 }

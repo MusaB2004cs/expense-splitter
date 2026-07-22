@@ -3,7 +3,7 @@
 RESTful API لإدارة وتسوية المصاريف المشتركة بين المجموعات — سكن مشترك، رحلات، فرق عمل.
 
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost</code>
+    <strong>Base URL</strong>: <code>https://expense-splitter.freehosting.dev</code>
 </aside>
 
 هذا التوثيق يغطي جميع نقاط النهاية لـ Expense Splitter API.

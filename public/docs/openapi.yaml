@@ -5,10 +5,13 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'https://expense-splitter.freehosting.dev'
 tags:
   -
     name: Endpoints
+    description: ''
+  -
+    name: Groups
     description: ''
 components:
   securitySchemes:
@@ -113,179 +116,6 @@ paths:
       tags:
         - Endpoints
       security: []
-  /api/v1/groups:
-    get:
-      summary: ''
-      operationId: getApiV1Groups
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Endpoints
-      security: []
-    post:
-      summary: ''
-      operationId: postApiV1Groups
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: vmqeopfuudtdsufvyvddq
-                description:
-                  type: string
-                  description: ''
-                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
-                  nullable: true
-              required:
-                - name
-      security: []
-  '/api/v1/groups/{group_id}':
-    get:
-      summary: ''
-      operationId: getApiV1GroupsGroup_id
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Endpoints
-      security: []
-    put:
-      summary: ''
-      operationId: putApiV1GroupsGroup_id
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: vmqeopfuudtdsufvyvddq
-                description:
-                  type: string
-                  description: ''
-                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
-                  nullable: true
-      security: []
-    delete:
-      summary: ''
-      operationId: deleteApiV1GroupsGroup_id
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: group_id
-        description: 'The ID of the group.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/v1/groups/{group_id}/members':
-    post:
-      summary: ''
-      operationId: postApiV1GroupsGroup_idMembers
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  description: 'Must be a valid email address. Must match an existing stored value.'
-                  example: qkunze@example.com
-              required:
-                - email
-      security: []
-    parameters:
-      -
-        in: path
-        name: group_id
-        description: 'The ID of the group.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/v1/groups/{group_id}/members/{user_id}':
-    delete:
-      summary: ''
-      operationId: deleteApiV1GroupsGroup_idMembersUser_id
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: group_id
-        description: 'The ID of the group.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-      -
-        in: path
-        name: user_id
-        description: 'The ID of the user.'
-        example: 1
-        required: true
-        schema:
-          type: integer
   '/api/v1/groups/{group_id}/expenses':
     get:
       summary: ''
@@ -569,6 +399,172 @@ paths:
         in: path
         name: settlement_id
         description: 'The ID of the settlement.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/groups:
+    get:
+      summary: 'عرض مجموعاتي'
+      operationId: ''
+      description: 'ترجع كل المجموعات التي ينتمي إليها المستخدم الحالي.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Groups
+    post:
+      summary: 'إنشاء مجموعة'
+      operationId: ''
+      description: 'ينشئ مجموعة جديدة ويضيف المُنشئ كعضو تلقائياً.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                description:
+                  type: string
+                  description: ''
+                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                  nullable: true
+              required:
+                - name
+  '/api/v1/groups/{group_id}':
+    get:
+      summary: 'عرض مجموعة'
+      operationId: ''
+      description: 'ترجع تفاصيل مجموعة واحدة مع أعضائها ومصاريفها (للأعضاء فقط).'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Groups
+    put:
+      summary: 'تعديل مجموعة'
+      operationId: ''
+      description: 'يعدّل اسم أو وصف المجموعة (للمُنشئ فقط).'
+      parameters: []
+      responses: {  }
+      tags:
+        - Groups
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                description:
+                  type: string
+                  description: ''
+                  example: 'Dolores dolorum amet iste laborum eius est dolor.'
+                  nullable: true
+    delete:
+      summary: 'حذف مجموعة'
+      operationId: ''
+      description: 'يحذف المجموعة نهائياً (للمُنشئ فقط).'
+      parameters: []
+      responses: {  }
+      tags:
+        - Groups
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/members':
+    post:
+      summary: 'إضافة عضو'
+      operationId: ''
+      description: 'يضيف مستخدماً للمجموعة عبر بريده الإلكتروني (للمُنشئ فقط).'
+      parameters: []
+      responses: {  }
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must match an existing stored value.'
+                  example: qkunze@example.com
+              required:
+                - email
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/groups/{group_id}/members/{user_id}':
+    delete:
+      summary: 'إزالة عضو'
+      operationId: ''
+      description: 'يزيل عضواً من المجموعة، ولا يمكن إزالة المُنشئ (للمُنشئ فقط).'
+      parameters: []
+      responses: {  }
+      tags:
+        - Groups
+    parameters:
+      -
+        in: path
+        name: group_id
+        description: 'The ID of the group.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: user_id
+        description: 'The ID of the user.'
         example: 1
         required: true
         schema:

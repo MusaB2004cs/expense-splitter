@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    /**
+     * عرض مجموعاتي
+     *
+     * ترجع كل المجموعات التي ينتمي إليها المستخدم الحالي.
+     * @group Groups
+     * @authenticated
+     */
     public function index(Request $request)
     {
         $groups = $request->user()->groups()->with('members')->get();
@@ -16,6 +23,13 @@ class GroupController extends Controller
         return GroupResource::collection($groups);
     }
 
+    /**
+     * إنشاء مجموعة
+     *
+     * ينشئ مجموعة جديدة ويضيف المُنشئ كعضو تلقائياً.
+     * @group Groups
+     * @authenticated
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -34,6 +48,13 @@ class GroupController extends Controller
         return response()->json(new GroupResource($group->load('members')), 201);
     }
 
+    /**
+     * عرض مجموعة
+     *
+     * ترجع تفاصيل مجموعة واحدة مع أعضائها ومصاريفها (للأعضاء فقط).
+     * @group Groups
+     * @authenticated
+     */
     public function show(Request $request, Group $group)
     {
         if (! $group->members->contains($request->user()->id)) {
@@ -43,6 +64,13 @@ class GroupController extends Controller
         return response()->json(new GroupResource($group->load(['members', 'expenses'])));
     }
 
+    /**
+     * تعديل مجموعة
+     *
+     * يعدّل اسم أو وصف المجموعة (للمُنشئ فقط).
+     * @group Groups
+     * @authenticated
+     */
     public function update(Request $request, Group $group)
     {
         if ($group->created_by !== $request->user()->id) {
@@ -59,6 +87,13 @@ class GroupController extends Controller
         return response()->json(new GroupResource($group));
     }
 
+    /**
+     * حذف مجموعة
+     *
+     * يحذف المجموعة نهائياً (للمُنشئ فقط).
+     * @group Groups
+     * @authenticated
+     */
     public function destroy(Request $request, Group $group)
     {
         if ($group->created_by !== $request->user()->id) {
@@ -70,6 +105,13 @@ class GroupController extends Controller
         return response()->json(['message' => 'تم حذف المجموعة.']);
     }
 
+    /**
+     * إضافة عضو
+     *
+     * يضيف مستخدماً للمجموعة عبر بريده الإلكتروني (للمُنشئ فقط).
+     * @group Groups
+     * @authenticated
+     */
     public function addMember(Request $request, Group $group)
     {
         if ($group->created_by !== $request->user()->id) {
@@ -94,6 +136,13 @@ class GroupController extends Controller
         ]);
     }
 
+    /**
+     * إزالة عضو
+     *
+     * يزيل عضواً من المجموعة، ولا يمكن إزالة المُنشئ (للمُنشئ فقط).
+     * @group Groups
+     * @authenticated
+     */
     public function removeMember(Request $request, Group $group, User $user)
     {
         if ($group->created_by !== $request->user()->id) {

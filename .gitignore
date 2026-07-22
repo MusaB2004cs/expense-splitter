@@ -22,3 +22,8 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+# ملفات النشر المؤقتة
+*.zip
+test_check/
+.env.production
+public/index.production.php
